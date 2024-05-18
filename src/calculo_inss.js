@@ -1,7 +1,7 @@
 function calcularInss(salarioBruto) {
 
     const tetoInss = 908.85
-    let inss = 1500;
+    let inss = 0;
 
     if(salarioBruto <= 1412) {
         inss = salarioBruto * (7.5 / 100)
