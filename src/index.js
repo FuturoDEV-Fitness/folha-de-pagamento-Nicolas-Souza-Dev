@@ -19,6 +19,8 @@ const calcularImpostoRenda = require("./calculo_imposto_renda")
 const calcularSalarioLiquido = require("./calculo_salario_liquido")
 
 const readline = require('readline')
+const PdfDocument =require("pdfkit")
+const fs = require("fs")
 
 const input = readline.createInterface(
     process.stdin, 
@@ -43,6 +45,8 @@ function programaPrincipal() {
                 let valorInss = calcularInss(salarioBruto);
                 let valorImposto = calcularImpostoRenda(salarioBruto);
                 let valorSalarioLiquido = calcularSalarioLiquido(salarioBruto);
+                const dataAtual = new Date();
+
                 console.log("---Folha de Pagamento---")
                 console.log(`Nome: ${nome}`)
                 console.log(`CPF: ${cpf}`)
@@ -52,6 +56,22 @@ function programaPrincipal() {
                 console.log(`Salário Líquido: ${valorSalarioLiquido}`)
 
                 input.close();
+
+                const doc = new PdfDocument()
+                doc.pipe(fs.createWriteStream("holetire.pdf"))
+                doc.fontSize(16)
+
+                doc.text("---Folha de Pagamento---")
+                doc.text(`Nome: ${nome}`)
+                doc.text(`CPF: ${cpf}`)
+                doc.text(`Salário Bruto: ${salarioBruto}`)
+                doc.text(`INSS: ${valorInss}`)
+                doc.text(`Imposto de Renda: ${valorImposto}`)
+                doc.text(`Salário Líquido: ${valorSalarioLiquido}`)
+                doc.text(`Data: ${dataAtual}`)
+                doc.end()
+
+
             })
         })
 
