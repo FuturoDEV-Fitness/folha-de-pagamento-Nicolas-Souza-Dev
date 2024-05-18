@@ -9,7 +9,7 @@ function calcularImpostoRenda(salarioTotal) {
   } else if(salarioTotal >= 3751.06 && salarioTotal <= 4664.68) {
     imposto = salarioTotal * (22.5 / 100)
   } else {
-    imposto = salario * (27.5 / 100)
+    imposto = salarioTotal * (27.5 / 100)
   }
 
   return imposto;

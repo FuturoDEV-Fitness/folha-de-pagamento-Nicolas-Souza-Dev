@@ -1,4 +1,4 @@
-function calcularSalarioLiquido(salarioBruto) {
+function calcularSalarioLiquido(salarioCompleto) {
     
     let inss = 0;
     let imposto = 0;
@@ -7,39 +7,37 @@ function calcularSalarioLiquido(salarioBruto) {
 
     //CALCULO INSS
 
-    if(salarioBruto <= 1412) {
-        inss = salarioBruto * (7.5 / 100)
+    if(salarioCompleto <= 1412) {
+        inss = salarioCompleto * (7.5 / 100)
 
-    } else if(salarioBruto >= 1412.01 && salarioBruto <= 2666.68) {
-        inss = salarioBruto * (9 / 100)
+    } else if(salarioCompleto >= 1412.01 && salarioCompleto <= 2666.68) {
+        inss = salarioCompleto * (9 / 100)
 
-    } else if(salarioBruto >= 2666.69 && salarioBruto <= 4000.03) {
-        inss = salarioBruto * (12 / 100)
+    } else if(salarioCompleto >= 2666.69 && salarioCompleto <= 4000.03) {
+        inss = salarioCompleto * (12 / 100)
     } else {
-        inss = salarioBruto * (14 / 100)
+        inss = salarioCompleto * (14 / 100)
 
         if(inss > tetoInss) {
             inss = tetoInss
         }
     }
 
-    console.log(inss)
 
     //CALCULO IMPOSTO DE RENDA 
 
-    if(salarioBruto <= 2112) {
+    if(salarioCompleto <= 2112) {
         imposto = 0;
-      } else if(salarioBruto >= 2112.01 && salarioBruto <= 3751.05) {
-        imposto = salarioBruto * (15 / 100)
-      } else if(salarioBruto >= 3751.06 && salarioBruto <= 4664.68) {
-        imposto = salarioBruto * (22.5 / 100)
+      } else if(salarioCompleto >= 2112.01 && salarioCompleto <= 3751.05) {
+        imposto = salarioCompleto * (15 / 100)
+      } else if(salarioCompleto >= 3751.06 && salarioCompleto <= 4664.68) {
+        imposto = salarioCompleto * (22.5 / 100)
       } else {
-        imposto = salarioBruto * (27.5 / 100)
+        imposto = salarioCompleto * (27.5 / 100)
       }
 
-      console.log(imposto)
     
-    salarioLiquido = salarioBruto - imposto - inss
+    salarioLiquido = salarioCompleto - imposto - inss
 
     return salarioLiquido;
 }
